@@ -21,8 +21,7 @@ class Rain(Sprite):
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
 
-        # Store the raid flow exact horizontal position
-        # am not sure about this maybe we should use self.y instead
+        # Store the rain flow exact horizontal position
         self.x = float(self.rect.x)
 
     def check_edges(self):
@@ -39,4 +38,5 @@ class Rain(Sprite):
         """Move the rain top to down"""
         self.x += (self.settings.rain_speed * self.settings.fleet_direction)
 
+        # Update the rect.x position
         self.rect.x = self.x
