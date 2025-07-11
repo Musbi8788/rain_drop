@@ -14,11 +14,21 @@ class RainFlow():
         pygame.init()
         self.settings = Settings()
 
-        # Normal size
-        self.screen = pygame.display.set_mode(
-            (self.settings.screen_width, self.settings.screen_height))
+        # # Fullscreen mode
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) 
+        # self.settings.screen_width = self.screen.get_rect().width
+        # self.settings.screen_height = self.screen.get_rect().height 
 
-        pygame.display.set_caption(self.settings.game_title)
+
+        # Normal screen mode
+        self.screen = pygame.display.set_mode(
+            (self.settings.screen_width, self.settings.screen_height)) 
+        
+        """
+        Note: To enable fullscreen mode, remove the '#' from the Fullscreen mode line and add '#' to the Normal mode line.
+        """
+
+        pygame.display.set_caption(self.settings.game_title) # The game title 
 
         # Make the rainflow in a group form
         self.rains = pygame.sprite.Group()
@@ -46,16 +56,16 @@ class RainFlow():
                 if event.key == pygame.K_q:
                     sys.exit()
 
-
-
     def _create_fleet(self):
         """Create the fleet of rain
         """
-        # Create an rain and find the number of an rains in a row
+        # Create a rain and find the number of a rains in a row
         # Spacing between each rain is equal to one rain width.
-        rain = Rain(self)  # rain use for calculation and spacing
+        rain = Rain(self)  # rain is use for calculation and spacing here.
+
         rain_width, rain_height = rain.rect.size
         available_space_x = self.settings.screen_width - (2 * rain_width)
+
         self.number_rains_x = available_space_x // (2 * rain_width)
 
         # Determine the number of rains that fit on the screen
@@ -78,7 +88,8 @@ class RainFlow():
         rain.rect.x = rain.x
 
         rain.rect.y = rain.rect.height + 2 * rain.rect.height * row_number
-        self.rains.add(rain)
+
+        self.rains.add(rain) # add rain in the rains flow group
 
     def _update_rainsflow(self):
         """Update position of rains and get rid of old rains.
@@ -87,9 +98,9 @@ class RainFlow():
         for rain in self.rains.copy():
             if rain.rect.bottom >= self.settings.screen_height:
                 self.rains.remove(rain)
-                # Create the full fleet of rains
+                # Create new rain row
                 for rain_number in range(self.number_rains_x):
-                    self._create_rain(rain_number,  0) # create new rainflow
+                    self._create_rain(rain_number,  0) 
 
 
     def _update_rains(self):
@@ -105,7 +116,7 @@ class RainFlow():
         """Respond appropriately if any rains have reached an edge.
         """
         for rain in self.rains.sprites():
-            if rain.check_edges():  # call check edges funtion in rain.py
+            if rain.check_edges():  # call check_edges funtion from the rain.py
                 self._change_fleet_direction()
                 break
 
@@ -126,5 +137,6 @@ class RainFlow():
 
 
 if __name__ == "__main__":
+    """Create an instance and run the rainflow game"""
     rain_game = RainFlow()
     rain_game.run_game()
