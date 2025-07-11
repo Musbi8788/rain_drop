@@ -17,11 +17,11 @@ class Rain(Sprite):
         self.image = pygame.image.load("images/rain_drop.bmp")
         self.rect = self.image.get_rect()
 
-        # show each new rain flaw near to the top screen
+        # show each new rain flow near to the top screen
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
 
-        # Store the raid flaw exact horizontal position
+        # Store the raid flow exact horizontal position
         # am not sure about this maybe we should use self.y instead
         self.x = float(self.rect.x)
 
@@ -31,7 +31,7 @@ class Rain(Sprite):
         # get the screen rect
         screen_rect = self.screen.get_rect()
 
-        # checking the alien fleet position in the screen
+        # checking the rainflow fleet position in the screen
         if self.rect.right >= screen_rect.right or self.rect.left <= 0:
             return True
 
