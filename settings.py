@@ -10,7 +10,7 @@ class Settings():
         self.screen_width = 1000
         self.screen_height = 650
         self.bg_color = (130, 200, 229)
-        self.game_title = "Rain Flaw"
+        self.game_title = "Rain Flow"
 
         # Rain settings
         self.rain_speed = 1.0
