@@ -7,7 +7,7 @@ This game is made up of three main Python files:
 - ``` rain.py ``` represent the rain image and how it should show in the screen
 
 ## Screenshot
-![screenshot](images/images.png)
+![screenshot]('images/images.png')
 
 
 ### How to run the game on your pc
